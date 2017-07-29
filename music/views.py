@@ -17,10 +17,12 @@ class DetailView(generic.DetailView):
 	model=Album
 		
 class AlbumCreate(CreateView):
+	#Template not specified as default sees for modelname_form.html
 	model = Album
 	fields = ['artis','album_title','genre','album_logo']
 
 class AlbumUpdate(UpdateView):
+	#Template not specified as default sees for modelname_form.html
 	model = Album
 	fields = ['artis','album_title','genre','album_logo']
 
