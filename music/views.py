@@ -1,6 +1,6 @@
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from .models import Album
 
 
@@ -19,13 +19,18 @@ class DetailView(generic.DetailView):
 class AlbumCreate(CreateView):
 	#Template not specified as default sees for modelname_form.html
 	model = Album
-	fields = ['artis','album_title','genre','album_logo']
+	fields = ['artist','album_title','genre','album_logo']
 
 class AlbumUpdate(UpdateView):
 	#Template not specified as default sees for modelname_form.html
 	model = Album
-	fields = ['artis','album_title','genre','album_logo']
+	fields = ['artist','album_title','genre','album_logo']
 
 class AlbumDelete(DeleteView):
 	model = Album
-	success_url = reverse_lazy('music:index')# Redirect user to 
+	#success_url = reverse_lazy("music:index")# Redirect user to 
+	#success_url = reverse("music:index")
+	#success_url = reverse("music:index")
+	#success_url = 'music/index/'
+	def get_success_url(self):
+		return reverse('music:index')
